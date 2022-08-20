@@ -1,0 +1,36 @@
+try:
+    tickets = int(input("""Введите количество билетов, которые вы хотите купить
+    При покупке больше 3-х билетов, предоставляется скидка 10%:"""))
+except ValueError:
+    print("Ошибка ввода")
+    tickets = int(input("""Введите количество билетов, которые вы хотите купить
+        При покупке больше 3-х билетов, предоставляется скидка 10%:"""))
+
+try:
+    age = list(map(int, input("Укажите через пробел возраст посетителей: ").split()))
+except ValueError:
+    print("Ошибка ввода")
+    age = list(map(int, input("Укажите через пробел возраст посетителей: ").split()))
+
+while tickets != len(age):
+    try:
+        age = list(map(int, input('''Количество посетителей не совпадает с количеством билетов.
+Укажите через пробел возраст посетителей:''').split()))
+    except ValueError:
+        print("Ошибка ввода")
+        age = list(map(int, input("Укажите через пробел возраст посетителей: ").split()))
+
+summa = []
+for i in age:
+    if i in range(0, 18):
+        summa.append(0)
+    elif i in range(18, 25):
+        summa.append(990)
+    else:
+        summa.append(1390)
+
+if tickets > 3:
+    print("Сумма к оплате с учетом скидки: ", sum(summa) - ((sum(summa) / 100) * 10), "рублей")
+else:
+    print("Сумма к оплате: ", sum(summa), "рублей")
+
